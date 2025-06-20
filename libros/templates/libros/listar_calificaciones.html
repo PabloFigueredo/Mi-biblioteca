@@ -1,0 +1,91 @@
+{% extends 'libros/base.html' %}
+{% block content %}
+<style>
+.tabla-calificaciones {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto 1rem auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(44, 62, 80, 0.07);
+}
+.tabla-calificaciones th, .tabla-calificaciones td {
+    padding: 0.8rem 1.1rem;
+    text-align: left;
+}
+.tabla-calificaciones th {
+    background: #2980b9;
+    color: #fff;
+    font-weight: bold;
+}
+.tabla-calificaciones tr:nth-child(even) {
+    background: #f4f8fb;
+}
+.tabla-calificaciones tr:hover {
+    background: #eaf3fa;
+}
+.btn {
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.3rem;
+    transition: background 0.2s, color 0.2s;
+}
+.btn-primary {
+    background: #2980b9;
+    color: #fff;
+}
+.btn-primary:hover {
+    background: #1c5d8c;
+}
+.btn-secondary {
+    background: #eee;
+    color: #444;
+}
+.btn-secondary:hover {
+    background: #bcdff1;
+    color: #222;
+}
+.btn-danger {
+    background: #e74c3c;
+    color: #fff;
+}
+.btn-danger:hover {
+    background: #c0392b;
+}
+</style>
+
+<h2 style="text-align:center; margin-bottom:1.5rem;">Calificaciones</h2>
+<div style="text-align:right; max-width:600px; margin:0 auto 1rem auto;">
+    <a href="{% url 'crear_calificacion' %}" class="btn btn-primary">Nueva Calificación</a>
+</div>
+<table class="tabla-calificaciones">
+    <tr>
+        <th>Nivel</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+    </tr>
+    {% for calificacion in calificaciones %}
+    <tr>
+        <td>{{ calificacion.nivel }}</td>
+        <td>{{ calificacion.descripcion }}</td>
+        <td>
+            <a href="{% url 'editar_calificacion' calificacion.id %}" class="btn btn-secondary">Editar</a>
+            <form action="{% url 'eliminar_calificacion' calificacion.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro que deseas eliminar esta calificación?');">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3" style="text-align:center;">No hay calificaciones registradas.</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

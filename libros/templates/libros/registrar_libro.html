@@ -1,0 +1,114 @@
+{% extends 'libros/base.html' %}
+
+{% block content %}
+<style>
+.form-libro {
+    max-width: 500px;
+    margin: 2.5rem auto;
+    background: #f9f9f9;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+}
+.form-libro h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2980b9;
+}
+.form-libro label {
+    font-weight: bold;
+    color: #555;
+    margin-top: 1rem;
+    display: block;
+}
+.form-libro input[type="text"],
+.form-libro input[type="date"],
+.form-libro input[type="file"],
+.form-libro select,
+.form-libro textarea {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #bcdff1;
+    padding: 0.7rem;
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+    background: #fff;
+    box-sizing: border-box;
+}
+.form-libro button[type="submit"] {
+    background: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.7rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+.form-libro button[type="submit"]:hover {
+    background: #1c5d8c;
+}
+.form-libro .btn.btn-secondary {
+    background: #eee;
+    color: #444;
+    border-radius: 8px;
+    padding: 0.7rem 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    transition: background 0.2s, color 0.2s;
+}
+.form-libro .btn.btn-secondary:hover {
+    background: #bcdff1;
+    color: #222;
+}
+</style>
+
+<div class="form-libro">
+    <h1>{% if form.instance.id %}Editar{% else %}Crear{% endif %} Libro</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="{{ form.nombre.id_for_label }}">Título:</label>
+        {{ form.nombre }}
+
+        <label for="{{ form.autor.id_for_label }}">Autor:</label>
+        {{ form.autor }}
+
+        <label for="{{ form.fecha_lanzamiento.id_for_label }}">Fecha de lanzamiento:</label>
+        {{ form.fecha_lanzamiento }}
+
+        <label for="{{ form.genero.id_for_label }}">Género:</label>
+        {{ form.genero }}
+
+        <label for="{{ form.calificacion.id_for_label }}">Calificación oficial:</label>
+        {{ form.calificacion }}
+
+        <label for="id_portada">Seleccionar portada (imagen):</label>
+        <input type="file" name="portada" id="id_portada" accept="image/*" style="display:none;" onchange="document.getElementById('portada-label').innerText = this.files[0] ? this.files[0].name : 'Ningún archivo seleccionado';">
+        <label for="id_portada" class="custom-file-label" id="portada-label" style="display:inline-block; background:#2980b9; color:#fff; padding:0.5rem 1.2rem; border-radius:8px; cursor:pointer; margin-bottom:1rem;">Seleccionar archivo</label>
+        <span id="portada-label" style="margin-left:10px;">Ningún archivo seleccionado</span>
+
+        <br>
+
+        <label for="id_pdf">Seleccionar libro en PDF:</label>
+        <input type="file" name="pdf" id="id_pdf" accept="application/pdf" style="display:none;" onchange="document.getElementById('pdf-label').innerText = this.files[0] ? this.files[0].name : 'Ningún archivo seleccionado';">
+        <label for="id_pdf" class="custom-file-label" id="pdf-label-btn" style="display:inline-block; background:#2980b9; color:#fff; padding:0.5rem 1.2rem; border-radius:8px; cursor:pointer; margin-bottom:1rem;">Seleccionar archivo</label>
+        <span id="pdf-label" style="margin-left:10px;">Ningún archivo seleccionado</span>
+
+        <br><br>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'listar_libros' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+<script>
+document.getElementById('id_portada').addEventListener('change', function(){
+    document.getElementById('portada-label').innerText = this.files[0] ? this.files[0].name : 'Ningún archivo seleccionado';
+});
+document.getElementById('id_pdf').addEventListener('change', function(){
+    document.getElementById('pdf-label').innerText = this.files[0] ? this.files[0].name : 'Ningún archivo seleccionado';
+});
+</script>
+{% endblock %}

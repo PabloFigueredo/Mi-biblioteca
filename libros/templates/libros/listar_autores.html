@@ -1,0 +1,137 @@
+{% extends 'libros/base.html' %}
+
+{% block content %}
+<style>
+.tabla-autores {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto 1rem auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(44, 62, 80, 0.07);
+}
+.tabla-autores th, .tabla-autores td {
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+}
+.tabla-autores th {
+    background: #2980b9;
+    color: #fff;
+    font-weight: bold;
+}
+.tabla-autores tr:nth-child(even) {
+    background: #f4f8fb;
+}
+.tabla-autores tr:hover {
+    background: #eaf3fa;
+}
+.btn {
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.3rem;
+    transition: background 0.2s, color 0.2s;
+}
+.btn-primary {
+    background: #2980b9;
+    color: #fff;
+}
+.btn-primary:hover {
+    background: #1c5d8c;
+}
+.btn-secondary {
+    background: #eee;
+    color: #444;
+}
+.btn-secondary:hover {
+    background: #bcdff1;
+    color: #222;
+}
+.btn-danger {
+    background: #e74c3c;
+    color: #fff;
+}
+.btn-danger:hover {
+    background: #c0392b;
+}
+.pagination {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+.pagination a, .pagination span {
+    display: inline-block;
+    margin: 0 0.3rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    background: #f4f8fb;
+    color: #2980b9;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+.pagination a:hover {
+    background: #2980b9;
+    color: #fff;
+}
+.pagination .current {
+    background: #2980b9;
+    color: #fff;
+}
+</style>
+
+<h1 style="text-align:center; margin-bottom:1.5rem;">Lista de Autores</h1>
+
+<div style="text-align:right; max-width:800px; margin:0 auto 1rem auto;">
+    <a href="{% url 'crear_autor' %}" class="btn btn-primary">Crear Autor</a>
+</div>
+
+<table class="tabla-autores">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Nacionalidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for autor in page_obj %}
+        <tr>
+            <td>{{ autor.id }}</td>
+            <td>{{ autor.nombre }}</td>
+            <td>{{ autor.nacionalidad }}</td>
+            <td>
+                <a href="{% url 'editar_autor' autor.id %}" class="btn btn-secondary">Editar</a>
+                <form action="{% url 'eliminar_autor' autor.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este autor?');">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" style="text-align:center;">No hay autores registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; Primero</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
+
+    <span class="current">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+    {% endif %}
+</div>
+{% endblock %}

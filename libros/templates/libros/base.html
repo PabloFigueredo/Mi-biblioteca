@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>{% block title %}Mi Biblioteca{% endblock %}</title>
+    <style>
+        /* Fuente base */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Encabezado */
+        header {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        /* Navegación */
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #dbeafe;
+        }
+
+        /* Contenido principal */
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            header {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <header>
+        <h1>Mi Biblioteca</h1>
+        {% if user.is_authenticated %}
+            <div style="position: absolute; right: 2rem; top: 2rem; color:black; font-weight: bold;">
+                Usuario: {{ user.username }}
+            </div>
+        {% endif %}
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="{% url 'listar_libros' %}">Inicio</a>
+                <a href="{% url 'crear_libro' %}">Registrar Libro</a>
+                <a href="{% url 'listar_autores' %}">Autores</a>
+                <a href="{% url 'listar_generos' %}">Géneros</a>
+                <a href="{% url 'listar_calificaciones' %}">Calificaciones</a>
+                <a href="{% url 'logout' %}">Cerrar sesión</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Contenido específico de cada página -->
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Mi Biblioteca</p>
+    </footer>
+</body>
+</html>

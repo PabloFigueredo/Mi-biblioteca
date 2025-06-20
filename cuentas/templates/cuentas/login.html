@@ -1,0 +1,118 @@
+{% extends 'libros/base.html' %}
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 2rem auto;
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #2c3e50;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-weight: 600;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+    }
+
+    .toggle-password {
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.6rem;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .register-link a {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    {% if error_message %}
+    <div style="background-color:#f8d7da; color:#842029; border:1px solid #f5c2c7; padding: 0.8rem; border-radius: 6px; margin-bottom: 1rem;">
+        {{ error_message }}
+    </div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_username">Usuario</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="id_password">Contraseña</label>
+            {{ form.password }}
+            <div class="toggle-password">
+                <input type="checkbox" id="ver-password" onclick="togglePassword()" />
+                <label for="ver-password">Mostrar contraseña</label>
+            </div>
+        </div>
+        <button type="submit" class="btn">Ingresar</button>
+    </form>
+    <div class="register-link">
+        ¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>
+    </div>
+</div>
+
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById("id_password");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'libros/base.html' %}
+{% block content %}
+<h1>Eliminar Género</h1>
+<p>¿Estás seguro que deseas eliminar "{{ genero.nombre }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="{% url 'listar_generos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

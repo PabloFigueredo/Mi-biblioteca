@@ -1,0 +1,97 @@
+{% extends 'libros/base.html' %}
+{% block content %}
+<style>
+.form-editar-resena {
+    max-width: 430px;
+    margin: 2rem auto;
+    background: #fffbe7;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+}
+.form-editar-resena h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #b48a00;
+}
+.rating-stars {
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0.5rem 0 1.2rem 0;
+}
+.rating-stars input[type="radio"] {
+    display: none;
+}
+.rating-stars label {
+    font-size: 2.1rem;
+    color: #f1c40f;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+.rating-stars input[type="radio"]:checked ~ label,
+.rating-stars label:hover,
+.rating-stars label:hover ~ label {
+    color: #ffd700;
+    transform: scale(1.15);
+}
+textarea {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #e1c97a;
+    padding: 0.7rem;
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+    background: #fff;
+    resize: vertical;
+}
+button[type="submit"] {
+    background: #f1c40f;
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+button[type="submit"]:hover {
+    background: #ffd700;
+    color: #000;
+}
+.btn.btn-secondary {
+    background: #eee;
+    color: #444;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    transition: background 0.2s, color 0.2s;
+}
+.btn.btn-secondary:hover {
+    background: #e1c97a;
+    color: #222;
+}
+</style>
+<div class="form-editar-resena">
+    <h2>Editar reseña</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Calificación:</label>
+        <div class="rating-stars">
+            {% for i in "54321"|make_list %}
+                <input type="radio" id="star{{ i }}" name="calificacion" value="{{ i }}" {% if resena.calificacion|stringformat:"i" == i %}checked{% endif %}>
+                <label for="star{{ i }}" title="{{ i }} estrellas">★</label>
+            {% endfor %}
+        </div>
+        <label>Comentario:</label>
+        <textarea name="comentario" rows="3" required>{{ resena.comentario }}</textarea>
+        <button type="submit">Guardar cambios</button>
+        <a href="{% url 'detalle_libro' resena.libro.id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
