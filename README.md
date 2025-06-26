@@ -60,3 +60,22 @@ los recursos desde aplicaciones externas o herramientas como Postman.
 El sistema soporta autenticación de usuarios, subida de archivos (portadas y PDFs),
 y está pensado para ser una base para bibliotecas, clubes de lectura o cualquier aplicación 
 relacionada con la gestión de libros y sus metadatos.
+
+## Registro de libros (codigo y resultado JSON)
+### Codigo
+- api_views.py
+```bash
+# Libro
+class LibroListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+```
+- serializers.py
+```bash
+class LibroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Libro
+        fields = '__all__'
+```
+### POSTMAN
+```bash
