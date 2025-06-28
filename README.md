@@ -79,3 +79,5 @@ class LibroSerializer(serializers.ModelSerializer):
 ```
 ### POSTMAN
 ```bash
+POST http://127.0.0.1:8000/api/libros/
+```
