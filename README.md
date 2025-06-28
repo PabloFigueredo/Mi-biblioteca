@@ -81,3 +81,4 @@ class LibroSerializer(serializers.ModelSerializer):
 ```bash
 POST http://127.0.0.1:8000/api/libros/
 ```
+![Resultado Postman](img/Resultado_registro_libro.png)
