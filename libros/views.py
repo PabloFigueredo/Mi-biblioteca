@@ -141,8 +141,7 @@ def eliminar_calificacion(request, id):
 
 
 # CRUD para Libro
-@login_required
-@never_cache
+
 @login_required
 @never_cache
 def listar_libros(request):
