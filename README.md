@@ -65,7 +65,6 @@ relacionada con la gestión de libros y sus metadatos.
 ### Codigo
 - api_views.py
 ```bash
-# Libro
 class LibroListCreateAPIView(generics.ListCreateAPIView):
     queryset = Libro.objects.all()
     serializer_class = LibroSerializer
@@ -82,3 +81,22 @@ class LibroSerializer(serializers.ModelSerializer):
 POST http://127.0.0.1:8000/api/libros/
 ```
 ![Resultado Postman](img/Resultado_registro_libro.png)
+## Listado de libros (codigo y resultado JSON)
+- api_views.py
+```bash
+  ```bash
+class LibroListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+```
+- serializers.py
+```bash
+class LibroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Libro
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+GET http://127.0.0.1:8000/api/libros/
+```
