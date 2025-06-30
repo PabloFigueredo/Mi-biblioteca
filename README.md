@@ -99,7 +99,7 @@ class LibroSerializer(serializers.ModelSerializer):
 ```bash
 PUT http://127.0.0.1:8000/api/libros/54/
 ```
-![Resultado Postman](img/Resultado_registro_libro.png)
+![Resultado Postman](img/Resultado_Actualizar.png)
 ### Eliminar libro
 - api_views.py
 ```bash
@@ -118,7 +118,7 @@ class LibroSerializer(serializers.ModelSerializer):
 ```bash
 DELETE http://127.0.0.1:8000/api/libros/50/
 ```
-![Resultado Postman](img/Resultado_registro_libro.png)
+![Resultado Postman](img/Resultado_Eliminar.png)
 ## Listar libros
 - api_views.py
 ```bash
