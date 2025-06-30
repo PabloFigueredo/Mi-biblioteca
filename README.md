@@ -61,8 +61,8 @@ El sistema soporta autenticación de usuarios, subida de archivos (portadas y PD
 y está pensado para ser una base para bibliotecas, clubes de lectura o cualquier aplicación 
 relacionada con la gestión de libros y sus metadatos.
 
-## Registro de libros (codigo y resultado JSON)
-### Codigo
+## Libros (codigo y resultado JSON)(CRUD)
+### Registrar libro
 - api_views.py
 ```bash
 class LibroListCreateAPIView(generics.ListCreateAPIView):
@@ -79,6 +79,21 @@ class LibroSerializer(serializers.ModelSerializer):
 ### POSTMAN
 ```bash
 POST http://127.0.0.1:8000/api/libros/
+```
+![Resultado Postman](img/Resultado_registro_libro.png)
+### Actualizar libro
+- api_views.py
+```bash
+class LibroRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+```
+- serializers.py
+```bash
+class LibroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Libro
+        fields = '__all__'
 ```
 ![Resultado Postman](img/Resultado_registro_libro.png)
 ## Listado de libros (codigo y resultado JSON)
