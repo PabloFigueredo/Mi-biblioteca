@@ -95,8 +95,31 @@ class LibroSerializer(serializers.ModelSerializer):
         model = Libro
         fields = '__all__'
 ```
+### POSTMAN
+```bash
+PUT http://127.0.0.1:8000/api/libros/54/
+```
 ![Resultado Postman](img/Resultado_registro_libro.png)
-## Listado de libros (codigo y resultado JSON)
+### Eliminar libro
+- api_views.py
+```bash
+class LibroRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+```
+- serializers.py
+```bash
+class LibroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Libro
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+DELETE http://127.0.0.1:8000/api/libros/50/
+```
+![Resultado Postman](img/Resultado_registro_libro.png)
+## Listar libros
 - api_views.py
 ```bash
   ```bash
