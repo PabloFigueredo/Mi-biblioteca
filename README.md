@@ -267,5 +267,12 @@ def recomendar_libros_por_genero():
 if __name__ == "__main__":
     recomendar_libros_por_genero()
 ```
-## License
+## Dependencias y licencias de terceros
 
+Este proyecto utiliza librerías de terceros, cada una con su propia licencia:
+
+- Django (BSD)
+- Django REST Framework (BSD)
+- pandas (BSD)
+- matplotlib (PSF/BSD)
+- python-decouple (MIT)
