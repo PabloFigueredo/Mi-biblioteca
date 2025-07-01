@@ -211,9 +211,24 @@ if __name__ == "__main__":
 - Se importa pandas como pd, para manipular los datos en formato DataFrame.
 ### Función: promedio_por_genero()
 - Calcula el promedio de calificación por género de libro y generar un gráfico de barras.
+#### Uso de pandas:
 - Consulta a la base de datos: obtiene los nombres de los géneros y sus calificaciones.
 - DataFrame: se convierte la lista de diccionarios (list(libros)) en una tabla con columnas: genero__nombre, calificacion__nivel.
 - Agrupa por género (groupby)
 - Calcula el promedio de calificaciones (mean)
 - Ordena los resultados de mayor a menor (sort_values)
-### 
+### Función: promedio_por_autor()
+- Calcula el promedio de calificación por autor.
+- #### Uso de pandas:
+- Misma lógica que en el caso anterior, pero agrupa por autor en vez de género.
+### Función: libros_por_anio()
+- Cuenta cuántos libros fueron publicados por año.
+#### Uso de pandas:
+- Se convierte la fecha de lanzamiento a formato datetime.
+- Se extrae el año (dt.year) como una nueva columna.
+- Cuenta cuántos libros hay por año (value_counts)
+- Ordena por año ascendente (sort_index)
+## Graficas
+![Grafico](promedio_nivel_por_genero.png)
+![Grafico](promedio_nivel_por_autor.png)
+![Grafico](libros_por_anio.png)
