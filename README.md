@@ -271,8 +271,8 @@ if __name__ == "__main__":
 
 Este proyecto utiliza librerías de terceros, cada una con su propia licencia:
 
-- Django (BSD)
-- Django REST Framework (BSD)
-- pandas (BSD)
-- matplotlib (PSF/BSD)
-- python-decouple (MIT)
+- Django: BSD-3-Clause License
+- Django REST Framework: BSD License
+- pandas: BSD License
+- matplotlib: PSF License y licencia propia de matplotlib (basada en BSD)
+- python-decouple: MIT License
