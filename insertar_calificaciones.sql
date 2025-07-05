@@ -4,4 +4,5 @@ VALUES
 (1, 'Muy malo'),
 (2, 'Malo'),
 (3, 'Bueno'),
-(4, 'Muy bueno');
+(4, 'Muy bueno'),
+(5, 'Excelente');
