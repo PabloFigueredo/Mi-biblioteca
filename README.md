@@ -260,7 +260,7 @@ if __name__ == "__main__":
 ## Graficas
 ![Grafico](promedio_nivel_por_genero.png)
 ![Grafico](top_10_promedio_nivel_por_autor.png)
-![Grafico](libros_por_decadas.png)
+![Grafico](libros_por_decada.png)
 ![Grafico](promedio_calificacion_por_nacionalidad.png)
 ## Generar scripts para recomendacion de libros desde selección de género
 ```bash
