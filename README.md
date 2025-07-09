@@ -139,6 +139,86 @@ class LibroSerializer(serializers.ModelSerializer):
 GET http://127.0.0.1:8000/api/libros/
 ```
 ![Resultado Postman](img/Resultado_listado_libros.png)
+
+## Autores (codigo y resultado JSON)(CRUD)
+### Registrar autor
+- api_views.py
+```bash
+class AutorListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
+```
+- serializers.py
+```bash
+class AutorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Autor
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+POST http://127.0.0.1:8000/api/autores/
+```
+![Resultado Postman](img/Insertar_autor.png)
+### Actualizar autor
+- api_views.py
+```bash
+class AutorRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
+```
+- serializers.py
+```bash
+class AutorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Autor
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+PUT http://127.0.0.1:8000/api/autores/16/
+```
+![Resultado Postman](img/Actualizar_autor.png)
+### Eliminar autor
+- api_views.py
+```bash
+class AutorRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
+```
+- serializers.py
+```bash
+class AutorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Autor
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+DELETE http://127.0.0.1:8000/api/autores/16/
+```
+![Resultado Postman](img/Eliminar_autor.png)
+## Listar libros
+- api_views.py
+```bash
+  ```bash
+class LibroListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+```
+- serializers.py
+```bash
+class LibroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Libro
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+GET http://127.0.0.1:8000/api/libros/
+```
+![Resultado Postman](img/Resultado_listado_libros.png)
+
 ## Crear dataframe desde los datos de valoraciones de libros y explicar script utilizado en pandas y crear graficos desde una pregunta  creada accediendo a las valoraciones
 ```bash
 import os
