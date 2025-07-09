@@ -355,7 +355,7 @@ class GeneroSerializer(serializers.ModelSerializer):
 ```bash
 DELETE http://127.0.0.1:8000/api/generos/16/
 ```
-![Resultado Postman](img/Eliminar_calificacion.png)
+![Resultado Postman](img/Eliminar_genero.png)
 ## Listar generos
 - api_views.py
 ```bash
