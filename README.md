@@ -176,7 +176,7 @@ class AutorSerializer(serializers.ModelSerializer):
 ```
 ### POSTMAN
 ```bash
-PUT http://127.0.0.1:8000/api/autores/16/
+PUT http://127.0.0.1:8000/api/autores/30/
 ```
 ![Resultado Postman](img/Actualizar_autor.png)
 ### Eliminar autor
@@ -195,29 +195,187 @@ class AutorSerializer(serializers.ModelSerializer):
 ```
 ### POSTMAN
 ```bash
-DELETE http://127.0.0.1:8000/api/autores/16/
+DELETE http://127.0.0.1:8000/api/autores/31/
 ```
 ![Resultado Postman](img/Eliminar_autor.png)
-## Listar libros
+## Listar autores
 - api_views.py
 ```bash
   ```bash
-class LibroListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Libro.objects.all()
-    serializer_class = LibroSerializer
+class AutorListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
 ```
 - serializers.py
 ```bash
-class LibroSerializer(serializers.ModelSerializer):
+class AutorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Libro
+        model = Autor
         fields = '__all__'
 ```
 ### POSTMAN
 ```bash
-GET http://127.0.0.1:8000/api/libros/
+GET http://127.0.0.1:8000/api/autores/
 ```
-![Resultado Postman](img/Resultado_listado_libros.png)
+![Resultado Postman](img/listado_autores.png)
+
+## Calificaciones (codigo y resultado JSON)(CRUD)
+### Registrar calificacion
+- api_views.py
+```bash
+class CalificacionListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Calificacion.objects.all()
+    serializer_class = CalificacionSerializer
+```
+- serializers.py
+```bash
+class CalificacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calificacion
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+POST http://127.0.0.1:8000/api/calificaciones/
+```
+![Resultado Postman](img/Insertar_calificacion.png)
+### Actualizar calificacion
+- api_views.py
+```bash
+class CalificacionRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Calificacion.objects.all()
+    serializer_class = CalificacionSerializer
+```
+- serializers.py
+```bash
+class CalificacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calificacion
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+PUT http://127.0.0.1:8000/api/calificaciones/6/
+```
+![Resultado Postman](img/Actualizar_calificacion.png)
+### Eliminar calificacion
+- api_views.py
+```bash
+class CalificacionRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Calificacion.objects.all()
+    serializer_class = CalificacionSerializer
+```
+- serializers.py
+```bash
+class CalificacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calificacion
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+DELETE http://127.0.0.1:8000/api/calificacion/6/
+```
+![Resultado Postman](img/Eliminar_calificacion.png)
+## Listar calificaciones
+- api_views.py
+```bash
+  ```bash
+class CalificacionListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Calificacion.objects.all()
+    serializer_class = CalificacionSerializer
+```
+- serializers.py
+```bash
+class CalificacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calificacion
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+GET http://127.0.0.1:8000/api/calificaciones/
+```
+![Resultado Postman](img/listado_calificaciones.png)
+
+## Generos(codigo y resultado JSON)(CRUD)
+### Registrar genero
+- api_views.py
+```bash
+class GeneroListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Genero.objects.all()
+    serializer_class = GeneroSerializer
+```
+- serializers.py
+```bash
+class GeneroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genero
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+POST http://127.0.0.1:8000/api/generos/
+```
+![Resultado Postman](img/Insertar_genero.png)
+### Actualizar genero
+- api_views.py
+```bash
+class GeneroRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Genero.objects.all()
+    serializer_class = GeneroSerializer
+```
+- serializers.py
+```bash
+class GeneroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genero
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+PUT http://127.0.0.1:8000/api/generos/16/
+```
+![Resultado Postman](img/Actualizar_genero.png)
+### Eliminar genero
+- api_views.py
+```bash
+class GeneroRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Genero.objects.all()
+    serializer_class = GeneroSerializer
+```
+- serializers.py
+```bash
+class GeneroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genero
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+DELETE http://127.0.0.1:8000/api/generos/16/
+```
+![Resultado Postman](img/Eliminar_calificacion.png)
+## Listar generos
+- api_views.py
+```bash
+  ```bash
+class GeneroListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Genero.objects.all()
+    serializer_class = GeneroSerializer
+```
+- serializers.py
+```bash
+class GeneroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genero
+        fields = '__all__'
+```
+### POSTMAN
+```bash
+GET http://127.0.0.1:8000/api/generos/
+```
+![Resultado Postman](img/listado_generos.png)
 
 ## Crear dataframe desde los datos de valoraciones de libros y explicar script utilizado en pandas y crear graficos desde una pregunta  creada accediendo a las valoraciones
 ```bash
