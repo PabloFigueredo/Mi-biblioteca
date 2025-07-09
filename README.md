@@ -487,14 +487,21 @@ if __name__ == "__main__":
 ### Función: promedio_por_autor()
 - Calcula el promedio de calificación por autor.
 - #### Uso de pandas:
-- Misma lógica que en el caso anterior, pero agrupa por autor en vez de género.
+- Misma lógica que en el caso anterior, pero agrupa por autor en vez de género y también muestra solo los 10 primeros autores
 ### Función: libros_por_anio()
-- Cuenta cuántos libros fueron publicados por año.
+- Cuenta cuántos libros fueron publicados por año divididos en décadas
 #### Uso de pandas:
-- Se convierte la fecha de lanzamiento a formato datetime.
-- Se extrae el año (dt.year) como una nueva columna.
-- Cuenta cuántos libros hay por año (value_counts)
-- Ordena por año ascendente (sort_index)
+- Extrae la fecha de publicación de los libros.
+- Convierte esas fechas a años(to_datetime()).
+- Calcula la década de cada libro (por ejemplo, 1990s, 2000s).
+- Cuenta cuántos libros hay en cada década(value_counts()).
+### Función: promedio_calificacion_por_nacionalidad()
+- Calcula el promedio de calificación por nacionalidad de los autores de los libros y generar un gráfico de barras.
+#### Uso de pandas:
+- Toma los datos de calificación y nacionalidad del autor.
+- Agrupa por nacionalidad(groupby()). 
+- Calcula el promedio de calificación por nacionalidad.(mean()).
+- Ordena los resultados de mayor a menor(sort_values()). 
 ## Graficas
 ![Grafico](promedio_nivel_por_genero.png)
 ![Grafico](top_10_promedio_nivel_por_autor.png)
