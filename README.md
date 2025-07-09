@@ -508,6 +508,7 @@ if __name__ == "__main__":
 ![Grafico](libros_por_decada.png)
 ![Grafico](promedio_calificacion_por_nacionalidad.png)
 ## Generar scripts para recomendacion de libros desde selección de género
+- Este script permite hacer recomendaciones de libros según el género literario que el usuario ingrese por teclado. 
 ```bash
 import os
 import django
